@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand-lg" appScroll >
+  <div class="container-fluid">
+    <a class="navbar-brand font-moc" routerLink="/home">
+      <span class="color-secondary me-2"
+        ><i class="fa-solid fa-clapperboard"></i></span
+      >Fx - Movies</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLogin">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/home"
+            routerLinkActive="active"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            [routerLink]="['/movies', pageNumberMo]"
+            routerLinkActive="active"
+            >Movies</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            [routerLink]="['/tv', pageNumberTv]"
+            routerLinkActive="active"
+            >Tv Show</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/people"
+            routerLinkActive="active"
+            [routerLink]="['/person', pageNumberPer]"
+            >People</a
+          >
+        </li>
+        <!-- <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/about"
+            routerLinkActive="active"
+            >About</a
+          >
+        </li> -->
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="isLogin">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/search"
+            routerLinkActive="active"
+            ><i class="fa-brands fa-searchengin fa-xl"></i
+          ></a>
+        </li>
+        <li class="nav-item hstack social-link" *ngIf="isLogin">
+          <a href="https://www.facebook.com/profile.php?id=100006540690109" target="_blank">
+            <i class="fab fa-facebook mx-1"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/ahmed-gamal-199a161a4/" target="_blank">
+            <i class="fab fa-linkedin-in mx-1"></i>
+          </a>
+          <a href="https://www.instagram.com/jimmy_ag7/" target="_blank">
+            <i class="fab fa-instagram mx-1"></i>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isLogin">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/login"
+            routerLinkActive="active"
+            >LogIn</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="!isLogin">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/signup"
+            routerLinkActive="active"
+            >SignUp</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="isLogin">
+          <span class="color-secondary user-name" aria-label="user name">{{
+            userData
+          }}</span>
+        </li>
+        <li class="nav-item" *ngIf="isLogin">
+          <span
+            (click)="logOut()"
+            class="nav-link text-reset"
+            aria-label="log out"
+            ><i class="fa-solid fa-right-from-bracket fa-xl"></i
+          ></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

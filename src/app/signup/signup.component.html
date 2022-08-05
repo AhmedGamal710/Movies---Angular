@@ -1,0 +1,238 @@
+<section class="container-fluid py-3">
+  <div class="sign__up--container w-75 mx-auto">
+    <div class="title pb-4">
+      <h1>Sign Up</h1>
+    </div>
+    <form
+      class="sign-container"
+      [formGroup]="signUpForm"
+      (ngSubmit)="submitSignUp(signUpForm)"
+    >
+      <p class="alert alert-danger small" *ngIf="msgError">
+        {{ msgError | slice: msgError.indexOf(":") + 1 }}
+      </p>
+      <div class="input-data position-relative mt-3">
+        <input
+          [ngClass]="{
+            'form-control': true,
+            'is-valid': signUpForm.get('first_name')?.valid,
+            'is-invalid':
+              signUpForm.get('first_name')?.invalid &&
+              signUpForm.get('first_name')?.value
+          }"
+          type="text"
+          placeholder=" "
+          formControlName="first_name"
+        />
+        <label
+          for="first_name"
+          class="form-label position-absolute top-50 start-0 translate-middle-y ps-2 ms-1 text-dark"
+          >First Name</label
+        >
+      </div>
+      <div
+        class="msg-error small"
+        *ngIf="
+          signUpForm.get('first_name')?.errors &&
+          signUpForm.get('first_name')?.touched
+        "
+      >
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('first_name')?.getError('required')"
+        >
+          First Name Is Required
+        </p>
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('first_name')?.getError('minlength')"
+        >
+          First Name Min Length 2
+        </p>
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('first_name')?.getError('maxlength')"
+        >
+          First Name Max Length 25
+        </p>
+      </div>
+      <div class="input-data position-relative mt-3">
+        <input
+          [ngClass]="{
+            'form-control': true,
+            'is-valid': signUpForm.get('last_name')?.valid,
+            'is-invalid':
+              signUpForm.get('last_name')?.invalid &&
+              signUpForm.get('last_name')?.value
+          }"
+          type="text"
+          placeholder=" "
+          formControlName="last_name"
+        />
+        <label
+          for="last_name"
+          class="form-label position-absolute top-50 start-0 translate-middle-y ps-2 ms-1 text-dark"
+          >Last Name</label
+        >
+      </div>
+      <div
+        class="msg-error small"
+        *ngIf="
+          signUpForm.get('last_name')?.errors &&
+          signUpForm.get('last_name')?.touched
+        "
+      >
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('last_name')?.getError('required')"
+        >
+          Last Name Is Required
+        </p>
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('last_name')?.getError('minlength')"
+        >
+          Last Name Min Length 2
+        </p>
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('last_name')?.getError('maxlength')"
+        >
+          Last Name Max Length 25
+        </p>
+      </div>
+      <div class="input-data position-relative mt-3">
+        <input
+          [ngClass]="{
+            'form-control': true,
+            'is-valid': signUpForm.get('age')?.valid,
+            'is-invalid':
+              signUpForm.get('age')?.invalid && signUpForm.get('age')?.value
+          }"
+          type="number"
+          placeholder=" "
+          formControlName="age"
+        />
+        <label
+          for="age"
+          class="form-label position-absolute top-50 start-0 translate-middle-y ps-2 ms-1 text-dark"
+          >Age</label
+        >
+      </div>
+      <div
+        class="msg-error small"
+        *ngIf="signUpForm.get('age')?.errors && signUpForm.get('age')?.touched"
+      >
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('age')?.getError('required')"
+        >
+          Age Required
+        </p>
+        <p class="text-danger" *ngIf="signUpForm.get('age')?.getError('min')">
+          Age Min 10
+        </p>
+        <p class="text-danger" *ngIf="signUpForm.get('age')?.getError('max')">
+          Age Max 80
+        </p>
+      </div>
+      <div class="input-data position-relative mt-3">
+        <input
+          [ngClass]="{
+            'form-control': true,
+            'is-valid': signUpForm.get('email')?.valid,
+            'is-invalid':
+              signUpForm.get('email')?.invalid && signUpForm.get('email')?.value
+          }"
+          type="email"
+          placeholder=" "
+          formControlName="email"
+        />
+        <label
+          for="email"
+          class="form-label position-absolute top-50 start-0 translate-middle-y ps-2 ms-1 text-dark"
+          >E-mail</label
+        >
+      </div>
+      <div
+        class="msg-error small"
+        *ngIf="
+          signUpForm.get('email')?.errors && signUpForm.get('email')?.touched
+        "
+      >
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('email')?.getError('required')"
+        >
+          E-mail Required
+        </p>
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('email')?.getError('email')"
+        >
+          In Valid Format E-mail
+        </p>
+      </div>
+      <div class="input-data position-relative mt-3">
+        <input
+          [ngClass]="{
+            'form-control': true,
+            'is-valid': signUpForm.get('password')?.valid,
+            'is-invalid':
+              signUpForm.get('password')?.invalid &&
+              signUpForm.get('password')?.value
+          }"
+          type="password"
+          placeholder=" "
+          formControlName="password"
+        />
+        <label
+          for="password"
+          class="form-label position-absolute top-50 start-0 translate-middle-y ps-2 ms-1 text-dark"
+          >Password</label
+        >
+      </div>
+      <div
+        class="msg-error small"
+        *ngIf="
+          signUpForm.get('password')?.errors &&
+          signUpForm.get('password')?.touched
+        "
+      >
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('password')?.getError('required')"
+        >
+          Password Required
+        </p>
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('password')?.getError('minlength')"
+        >
+          Min Length 2
+        </p>
+        <p
+          class="text-danger"
+          *ngIf="signUpForm.get('password')?.getError('maxlength')"
+        >
+          Max Length 10
+        </p>
+        <ul
+          class="text-danger"
+          *ngIf="signUpForm.get('password')?.getError('pattern')"
+        >
+          <li>Start A to Z</li>
+          <li>Write Number Or Char</li>
+        </ul>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-secondary btn-form font-moc text-uppercase mt-4"
+        [disabled]="signUpForm.invalid"
+      >
+        Sign Up
+        <span *ngIf="isLoading"><i class="fas fa-spinner fa-spin"></i></span>
+      </button>
+    </form>
+  </div>
+</section>

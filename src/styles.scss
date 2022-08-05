@@ -1,0 +1,149 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200;300;400;500;600;700&display=swap");
+@function convert($param) {
+  @return $param / 16 * 1rem;
+}
+@mixin transition {
+  transition: all 0.4s;
+}
+@mixin heightAndCenter {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@mixin btnHover {
+  background-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0.15),
+    rgb(0 0 0 / 0.08)
+  );
+}
+@mixin colorHover {
+  @include transition;
+  &:hover {
+    color: $lightBgColor !important;
+  }
+}
+// Global Variable
+$bgColor: #131722;
+$bgColorLight: rgb(0 0 0 / 0.5);
+$lightBgColor: #24baef;
+$bgTransparent: rgba(36, 186, 239, 0.6);
+$fontColor: #fff;
+$secondFontColor: #949cb0;
+$borderColor: #a8a8a83d;
+$borderHeight: 1px;
+$fontMoc: "Mochiy Pop One", sans-serif;
+$fontTaj: "Tajawal", sans-serif;
+$fontMons: "Montserrat Alternates", sans-serif;
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #f6f6f6;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $bgColor;
+}
+body {
+  height: 100%;
+  width: 100%;
+  background-color: $bgColor;
+  font-family: $fontTaj;
+  color: $fontColor;
+  .bg-light {
+    background: $bgColorLight !important;
+  }
+  p {
+    color: $secondFontColor;
+  }
+  :is(h1, h2, h3, h4) {
+    font-family: $fontMoc;
+  }
+  a {
+    color: $fontColor !important;
+  }
+  .color-primary {
+    color: $bgColor !important;
+  }
+  .color-secondary {
+    color: $lightBgColor !important;
+  }
+  .font-taj {
+    font-family: $fontTaj;
+  }
+  .font-moc {
+    font-family: $fontMoc;
+  }
+  .font-mon {
+    font-family: $fontMons;
+  }
+  .btn-form {
+    background-color: $lightBgColor;
+    &:hover {
+      @include btnHover;
+    }
+  }
+  .input-data {
+    label {
+      @include transition;
+    }
+    :is(input:focus + label, input:not(:placeholder-shown) + label) {
+      top: convert(5) !important;
+      font: {
+        size: convert(10);
+        weight: 700;
+      }
+      letter-spacing: 0.5px;
+    }
+  }
+  .card {
+    @include transition;
+    filter: grayscale(0.5);
+    &:hover {
+      filter: grayscale(0);
+    }
+    .images {
+      &:hover img {
+        transform: scale(1.2) rotate(5deg);
+      }
+      cursor: pointer;
+      height: 100%;
+      position: relative;
+      &::after {
+        content: "Click To Show More Details...";
+        color: $lightBgColor;
+        position: absolute;
+        inset: 0;
+        background-color: $bgColorLight;
+        transform: scale(0);
+        display: grid;
+        place-content: center;
+        @include transition;
+      }
+      &:hover::after {
+        transform:scale(1)
+      }
+      .svg-progrees {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+      }
+    }
+    img {
+      @include transition;
+      height: 100% ;
+    }
+    .card-text {
+      background-color: $bgColor;
+      padding: convert(10);
+      border-radius: convert(7);
+    }
+  }
+}

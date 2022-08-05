@@ -1,0 +1,108 @@
+<div class="container-fluid py-3">
+  <div class="row gy-4 justify-content-evenly">
+    <div class="col-md-3">
+      <div class="card bg-light border-0">
+        <img
+          [src]="imgSrc + (details.poster_path ?? details.profile_path)"
+          class="img-thumbnail border-0 bg-transparent"
+          onerror="this.src='./assets/images/img-not.jpg'"
+          [alt]="details.name ?? details.title"
+          [title]="details.name ?? details.title"
+        />
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="item">
+        <h2 class="item-title mb-3">
+          {{ details.title ?? details.name }}
+        </h2>
+        <ng-container *ngIf="details.genres">
+          <ul class="list-unstyled">
+            <li class="badge badge-cusome" *ngFor="let box of details.genres">
+              {{ box.name }}
+            </li>
+          </ul>
+        </ng-container>
+
+        <p class="badge badge-cusome" *ngIf="details.known_for_department ">
+          {{ details.known_for_department }}
+        </p>
+        <span class="badge text-bg-warning text-uppercase" *ngIf=" details.original_language">{{
+          details.original_language
+        }}</span>
+        <ul class="list-unstyled font-mon mt-2">
+          <li class="pb-3" *ngIf="details.vote_average">
+            Vote :
+            <span
+              class="vote rounded-1 p-1"
+              [style.background-image]="
+                'linear-gradient(to top,#a8a8a83d ' +
+                (details.vote_average | convert) +
+                '% , transparent ' +
+                (details.vote_average | convert) +
+                '%)'
+              "
+            >
+              {{ details.vote_average?.toString() | slice: 0:3 }}</span
+            >
+          </li>
+          <li class="pb-3" *ngIf="details.vote_count">
+            Vote Count :
+            <span>{{ details.vote_count }}</span>
+          </li>
+          <li class="pb-3" *ngIf="details.place_of_birth">
+            place of birth :
+            <span>{{ details.place_of_birth }}</span>
+          </li>
+          <li class="pb-3" *ngIf="details.birthday">
+            birthday :
+            <span>{{ details.birthday }}</span>
+          </li>
+          <li class="pb-3">
+            popularity :
+            <span>{{ details.popularity }}</span>
+          </li>
+          <li class="pb-3">
+            <span *ngIf="details.release_date"
+              >release date : {{ details.release_date }}</span
+            >
+            <span *ngIf="details.first_air_date"
+              >first air date : {{ details.first_air_date }}</span
+            >
+          </li>
+
+          <li class="pb-3"  *ngIf="details.created_by">
+            <span
+              >created by :
+              <div class="row g-2">
+                <div *ngFor="let item of details.created_by" class="col-sm-2">
+                  <div class="card h-100 bg-light border-0">
+                    <img
+                      [src]="imgSrc + item.profile_path"
+                      [alt]="item.name"
+                      [title]="item.name"
+                      onerror="this.src='./assets/images/img-not.jpg'"
+                      class="img-thumbnail h-100 border-0 bg-transparent"
+                    />
+                    <h3 class="h6 small text-center my-2">{{ item.name }}</h3>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </li>
+
+          <li class="pb-3">
+            <ng-container *ngIf="details.overview">
+              overview :
+              <p>{{ details.overview }}</p>
+            </ng-container>
+            <ng-container *ngIf="details.biography">
+              biography :
+              <p>{{ details.biography }}</p>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

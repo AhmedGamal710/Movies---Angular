@@ -1,0 +1,96 @@
+<div class="container-fluid py-3">
+   <nav 
+   aria-label="Page navigation example"
+   class="d-flex justify-content-center mb-3 pagination-nav"
+ >
+   <ul class="pagination pagination-sm">
+     <!-- <li class="page-item">
+       <a
+         (click)="pervPage()"
+         class="page-link bg-transparent"
+         aria-label="Previous"
+       >
+         <span aria-hidden="true">&laquo;</span>
+       </a>
+     </li> -->
+     <li *ngFor="let num of PagNumArray" class="page-item">
+       <a
+         #link
+         (click)="changePageUrl(link.innerHTML)"
+         class="page-link bg-transparent"
+         [routerLink]="['/movies', num]"
+         routerLinkActive="active"
+         >{{ num }}</a
+       >
+     </li>
+     <!-- <li class="page-item">
+       <a
+         (click)="nextPage()"
+         class="page-link bg-transparent"
+         aria-label="Next"
+       >
+         <span aria-hidden="true">&raquo;</span>
+       </a>
+     </li> -->
+   </ul>
+ </nav>
+  <div class="row gy-4 justify-content-evenly">
+    <div *ngFor="let movie of trendingMovies" class="col-md-3">
+      <div class="card h-100 bg-light border-0 text-center">
+        <div
+          class="images overflow-hidden"
+          [routerLink]="['/details', movie.id, 'movie']"
+        >
+          <svg width="80" height="80" class="svg-progrees">
+            <circle
+              cx="40"
+              cy="40"
+              r="18"
+              stroke="darkgray"
+              stroke-width="3"
+              stroke-opacity="0.1"
+            />
+            <circle
+              cx="40"
+              cy="40"
+              fill="none"
+              r="18"
+              [attr.stroke]="
+                (movie.vote_average | convert) >= 70
+                  ? 'green'
+                  : (movie.vote_average | convert) >= 50
+                  ? 'gold'
+                  : 'tomato'
+              "
+              stroke-width="3"
+              stroke-linecap="round"
+              pathLength="100"
+              [attr.stroke-dashoffset]="movie.vote_average | progrees"
+              stroke-dasharray="100"
+              transform-origin="40 40"
+              transform="rotate(-90)"
+            />
+            <text x="30" y="45" fill="white" class="small">
+              {{ movie.vote_average | convert }}%
+            </text>
+          </svg>
+          <img
+            class="card-img-top img-thumbnail border-0 bg-transparent"
+            [src]="imgPath + movie.poster_path"
+            onerror="this.src='./assets/images/img-not.jpg'"
+            [alt]="movie.title"
+            [title]="movie.title"
+          />
+        </div>
+        <div class="card-body">
+          <h2 class="h6 small card-title">
+            {{ movie.title }}
+          </h2>
+          <p class="card-text">
+            {{ movie.overview | overview: 0:10 }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

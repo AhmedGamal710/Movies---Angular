@@ -1,0 +1,61 @@
+@import "../../styles.scss";
+nav {
+  padding: {
+    top: convert(15);
+    bottom: convert(15);
+  }
+  .nav-link {
+    cursor: pointer;
+    @include transition;
+    @include colorHover;
+    &::after {
+      @include transition;
+      position: absolute;
+      content: "";
+      bottom: 0;
+      width: 0;
+      right: 0;
+      height: 2px;
+      background-color: $lightBgColor;
+    }
+    font: {
+      family: $fontMons;
+    }
+    letter-spacing: 1px;
+    position: relative;
+  }
+  .nav-link.active {
+    font-weight: 700;
+    color: $lightBgColor !important;
+    &::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+  .user-name {
+    width: 35px;
+    height: 35px;
+    background-color: $lightBgColor;
+    border-radius: 50%;
+    color: $fontColor !important;
+    display: grid;
+    place-content: center;
+    font: {
+      family: $fontMoc;
+      weight: 600;
+      size: convert(20);
+    }
+   
+  }
+  .social-link {
+    margin:  {
+      right: 8px;
+      left: 5px
+    };
+    a {
+      &:hover {
+        color: $lightBgColor !important;
+      }
+    }
+  }
+}

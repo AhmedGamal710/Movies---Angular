@@ -1,0 +1,15 @@
+@import "../../styles.scss";
+:host {
+  .badge-cusome {
+    background-color: $lightBgColor;
+    border-radius: convert(5);
+    margin: {
+      right: 5px;
+    }
+    font: {
+      family: $fontMons;
+      size: convert(12);
+    }
+    color: $bgColor;
+  }
+}

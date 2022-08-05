@@ -1,0 +1,10 @@
+@import '../../styles.scss';
+:host {
+   header {
+      background-image: url('../../assets/images/home.webp');
+     min-height: calc(100vh - 70px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+   }
+}

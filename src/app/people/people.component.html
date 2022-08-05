@@ -1,0 +1,61 @@
+<div class="container-fluid py-3">
+   <nav 
+   aria-label="Page navigation example"
+   class="d-flex justify-content-center mb-3 pagination-nav"
+ >
+   <ul class="pagination pagination-sm">
+     <!-- <li class="page-item">
+       <a
+         (click)="pervPage()"
+         class="page-link bg-transparent"
+         aria-label="Previous"
+       >
+         <span aria-hidden="true">&laquo;</span>
+       </a>
+     </li> -->
+     <li *ngFor="let num of PagNumArray" class="page-item">
+       <a
+         #link
+         (click)="changePageUrl(link.innerHTML)"
+         class="page-link bg-transparent"
+         [routerLink]="['/person', num]"
+         routerLinkActive="active"
+         >{{ num }}</a
+       >
+     </li>
+     <!-- <li class="page-item">
+       <a
+         (click)="nextPage()"
+         class="page-link bg-transparent"
+         aria-label="Next"
+       >
+         <span aria-hidden="true">&raquo;</span>
+       </a>
+     </li> -->
+   </ul>
+ </nav>
+ <div class="row gy-4 my-4 justify-content-evenly">
+  
+  <div *ngFor="let movie of trendingPer" class="col-md-3">
+    <div class="card h-100 bg-light border-0 text-center">
+      <div
+        class="images overflow-hidden"
+        [routerLink]="['/details', movie.id, 'person']"
+      >
+        <img
+          class="card-img-top img-thumbnail border-0 bg-transparent"
+          [src]="imgPath + movie.profile_path"
+          onerror="this.src='./assets/images/img-not.jpg'"
+          [alt]="movie.name"
+          [title]="movie.name"
+        />
+      </div>
+      <div class="card-body">
+        <h2 class="h6 small card-title">
+          {{ movie.name }}
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
